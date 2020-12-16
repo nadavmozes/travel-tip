@@ -114,6 +114,13 @@ i {
     height: auto;
 }
 
+.user-locations .locations-heading {
+    font-size: 24px;
+    font-weight: 600px;
+    margin-left: 3px;
+    text-decoration: underline;
+}
+
 .main-section #map {
     flex-basis: 70%;
     margin-left: 1.25rem;
