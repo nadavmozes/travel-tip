@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    background-color:  #eee
+    background-color: #eee
 }
 
 i {
@@ -19,6 +19,7 @@ i {
 
 
 /* LAYOUT */
+
 .main-layout {
     max-width: 85vw;
     margin: 0 auto;
@@ -28,8 +29,7 @@ i {
 /* nav-bar */
 
 .navbar {
-    background-color:#303F9F;
-
+    background-color: #303F9F;
 }
 
 .nav-container {
@@ -62,6 +62,7 @@ i {
     font-size: 45px;
     padding: 10px 0;
     flex-grow: 2;
+    cursor: pointer;
 }
 
 
@@ -109,6 +110,22 @@ i {
     background-color: whitesmoke;
 }
 
+.weather-heading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+.weather-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.location-name {
+    text-align: center;
+}
+
 .main-section .location-info .user-locations {
     background-color: #C5CAE9;
     height: auto;
@@ -134,14 +151,13 @@ i {
     margin-top: 8px;
 }
 
-.main-section .locations-list li:not(:last-child){
+.main-section .locations-list li:not(:last-child) {
     margin-bottom: 5px;
 }
 
 .main-section .locations-list li p {
     flex-grow: 2;
     font-size: 22px;
-    
 }
 
 .main-section .locations-list i {
@@ -167,7 +183,7 @@ i {
 .btn {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #FFFFFF;
-    background-color:#757575;
+    background-color: #757575;
     border: none;
     cursor: pointer;
 }
@@ -205,7 +221,13 @@ input[name="search"] {
 }
 
 @keyframes jump {
-    0% {transform: scale(1.1,.9);}
-   50% {transform: scale(.9,1.1) translateY(-.3rem)}
-   70% {transform: scale(1);}
+    0% {
+        transform: scale(1.1, .9);
+    }
+    50% {
+        transform: scale(.9, 1.1) translateY(-.3rem)
+    }
+    70% {
+        transform: scale(1);
+    }
 }
