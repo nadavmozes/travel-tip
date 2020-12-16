@@ -6,6 +6,7 @@ console.log('locationService', locationService);
 var gGoogleMap;
 
 window.onload = () => {
+    renderLocations()
     initMap()
         .then(() => {
             addMarker({ lat: 32.0749831, lng: 34.9120554 });
@@ -80,11 +81,22 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
 
 function onUserInput(pos, name) {
     locationService.createLoc(pos.lat, pos.lng, name); // Create the location using the service
-    console.log(locationService.gLocations)
 }
 
+
+
 function renderLocations() {
-    const locations = locationService.getLocations();
+    locationService.createLocations();
+    locationService.getLocations()
+        .then(locations => {
+            const strHTMLs = locations.map(location => {
+                return `
+    <li>${location.name}<i class="fas fa-map-marker-alt loc-${location.id}"></i><i class="far fa-trash-alt loc-${location.id}"></i></li>
+
+               `
+            })
+            document.querySelector('.locations-list').innerHTML = strHTMLs.join('');
+        })
 
 }
 

@@ -1,5 +1,5 @@
 const KEY = 'locDB'
-const gLocations = [{
+var gLocations = [{
     id: makeId(),
     name: 'Puki Home',
     lat: 17,
@@ -42,7 +42,7 @@ function removeLoc(locId) {
 }
 
 function getLocIdxById(locId) {
-    const idx = gLocations.findIndex(function(location) {
+    const idx = gLocations.findIndex(function (location) {
         return location.id === locId;
     })
     return idx;
