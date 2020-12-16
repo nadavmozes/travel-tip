@@ -111,6 +111,7 @@ i {
 
 .main-section .location-info .user-locations {
     background-color: #C5CAE9;
+    height: auto;
 }
 
 .main-section #map {
