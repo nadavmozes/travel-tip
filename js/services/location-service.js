@@ -48,6 +48,12 @@ function getLocIdxById(locId) {
     return idx;
 }
 
-function getLocationForDisplay() {
-    return gLocations;
+function createLocations() {
+    const locations = getFromLocalStorage(KEY)
+    if (!locations || !locations.length) {
+        gLocations = [];
+        saveInLocalStorage(KEY, gLocations);
+        return;
+    }
+    gLocations = locations;
 }
