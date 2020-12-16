@@ -1,4 +1,3 @@
-'use strict'
 const KEY = 'locDB'
 const gLocations = [{
     id: makeId(),
@@ -11,7 +10,9 @@ const gLocations = [{
 }];
 
 export const locationService = {
-    getLocations
+    getLocations,
+    createLoc,
+    removeLoc
 }
 
 
