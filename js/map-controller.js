@@ -8,6 +8,7 @@ var gMarkers = [];
 
 window.onload = () => {
     renderLocations();
+    onSearchInput()
     initMap()
         .then(() => {
             addMarker({ lat: 32.0749831, lng: 34.9120554 });
@@ -81,6 +82,20 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
         })
 
 
+}
+
+function onSearchInput() {
+    const elForm = document.querySelector('.user-search')
+    elForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const elInput = document.querySelector('input[name="search"]')
+        const userSearchTerm = elInput.value;
+        elInput.value = '';
+        const prmPos = locationService.getGeoPos('address');
+
+
+
+    })
 }
 
 function onUserInput(pos, name) {
@@ -171,6 +186,8 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
+
 
 function onSaveLocation(pos) {
     return Swal.fire({
