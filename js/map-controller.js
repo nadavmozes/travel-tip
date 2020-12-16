@@ -77,6 +77,7 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
         .then(pos => { // When user sends input
             return new Promise((resolve, reject) => {
                 document.querySelector('.swal2-confirm').addEventListener('click', (() => {
+                    console.log('Testing');
                     resolve(onUserInput(pos));
                 }))
 
