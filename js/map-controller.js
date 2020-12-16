@@ -50,12 +50,37 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
             return gGoogleMap
         })
-        .then(map => {
-            map.addListener('click', ((e) => {
-                console.log('lat', e.latLng.lat());
-                console.log('lat', e.latLng.lng());
+        .then(map => { // Listen to a click and get the lat, lng
+            return new Promise((resolve, reject) => {
+                map.addListener('click', ((e) => {
+                    const lat = e.latLng.lat();
+                    const lng = e.latLng.lng();
+                    const pos = { lat, lng };
+                    console.log(pos);
+                    console.log('lat', e.latLng.lat());
+                    console.log('lat', e.latLng.lng());
+                    resolve(pos); // Will return to .then an object containing lat and lng.
+                }))
+            })
+        })
+
+        .then(pos => {
+            return new Promise((resolve, reject) => {
+
+                document.querySelector('.btn-save').addEventListener('click', (() => {
+                    console.log(pos);
+                    onSaveLocation(); // Prompt user for a location name
+                    resolve(pos);
+                }))
+            })
+        })
+        .then(pos => { // When user sends input
+            document.querySelector('.swal2-confirm').addEventListener('click', (() => {
+                console.log('User clicked save', pos)
             }))
         })
+
+
 }
 
 function addMarker(loc) {
@@ -92,4 +117,23 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function onSaveLocation() {
+    Swal.fire({
+        title: 'Enter location\'s name',
+        input: 'text',
+        customClass: {
+            validationMessage: 'A name is required.'
+        },
+        preConfirm: (value) => {
+            if (!value) {
+                Swal.showValidationMessage(
+                    '<i class="fa fa-info-circle"></i> A name is required.'
+                )
+            }
+        }
+    })
+
+
 }
