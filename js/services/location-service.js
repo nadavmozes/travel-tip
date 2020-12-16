@@ -1,13 +1,13 @@
 'use strict'
 
 const gLocations = [{
-    id,
+    id: makeId(),
     name: 'Puki Home',
     lat: 17,
     lng: 19,
-    weather,
-    createdAt,
-    updatedAt,
+    weather: '30C',
+    createdAt: '32165465465',
+    updatedAt: '65465465465',
 }];
 
 export const locationService = {
@@ -20,8 +20,8 @@ function getLocations() {
 }
 
 function createLoc(lat, lng, name) {
-    let loc = {
-        id: makeId(),
+    var loc = {
+        id,
         lat,
         lng,
         name
