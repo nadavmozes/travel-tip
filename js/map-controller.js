@@ -83,8 +83,8 @@ function onUserInput(pos, name) {
     console.log(locationService.gLocations)
 }
 
-
 function renderLocations() {
+    const locations = locationService.getLocations();
 
 }
 

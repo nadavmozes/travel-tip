@@ -13,11 +13,7 @@ export const locationService = {
     getLocations,
     createLoc,
     removeLoc,
-<<<<<<< HEAD
     getLocationForDisplay
-=======
-    gLocations
->>>>>>> a32ea0fcb965169ec7cf46e1920b53d9840a405f
 }
 
 
