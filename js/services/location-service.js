@@ -21,7 +21,7 @@ function getLocations() {
 
 function createLoc(lat, lng, name) {
     var loc = {
-        id,
+        id: makeId(),
         lat,
         lng,
         name
