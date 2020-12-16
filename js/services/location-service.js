@@ -14,6 +14,7 @@ export const locationService = {
     createLoc,
     removeLoc,
     createLocations,
+    getGeoPos,
 }
 
 
@@ -42,7 +43,7 @@ function removeLoc(locId) {
 }
 
 function getLocIdxById(locId) {
-    const idx = gLocations.findIndex(function (location) {
+    const idx = gLocations.findIndex(function(location) {
         return location.id === locId;
     })
     return idx;
@@ -56,4 +57,9 @@ function createLocations() {
         return;
     }
     gLocations = locations;
+}
+
+function getGeoPos(address) {
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBl87TiQS8GLNue1FDNN3tM3GN9QkCw3lc`)
+        .then(res => res.data)
 }
