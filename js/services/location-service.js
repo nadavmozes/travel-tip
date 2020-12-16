@@ -9,6 +9,11 @@ var gLocations = [{
     updatedAt: '65465465465',
 }];
 
+var gCurrPos = [{
+    lat: userLat,
+    lng: userLng,
+}]
+
 export const locationService = {
     getLocations,
     createLoc,
