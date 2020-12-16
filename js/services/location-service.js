@@ -1,6 +1,5 @@
 'use strict'
 const KEY = 'locDB'
-var gSavedLoc;
 const gLocations = [{
     id: makeId(),
     name: 'Puki Home',
@@ -35,8 +34,8 @@ function createLoc(lat, lng, name) {
 function removeLoc(locId) {
     const locIdx = getLocIdxById(locId);
     if (locIdx >= 0) {
-        if (confirm('are you sure?')) gSavedLoc.splice(locIdx, 1);
-        saveInLocalStorage(KEY, gSavedLoc);
+        if (confirm('are you sure?')) gLocations.splice(locIdx, 1);
+        saveInLocalStorage(KEY, gLocations);
     }
 }
 
