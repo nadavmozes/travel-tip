@@ -47,9 +47,41 @@ window.onload = () => {
     })
 }
 
+function showWeather() {
+    const lat = gCurrPos.lat;
+    const lng = gCurrPos.lng;
+    locationService.getWeather(lat, lng)
+        .then(data => {
+            return new Promise((resolve, reject) => {
+                const weatherData = {
+                    img: data.weather[0].icon,
+                    description: data.weather[0].description,
+                    mainTemp: data.main.temp,
+                    minTemp: data.main.temp_min,
+                    maxTemp: data.main.temp_max,
+                    wind: data.wind.speed
+                }
+                resolve(weatherData)
+
+            })
+        })
+        .then(data => renderWeather(data))
+
+
+}
+
+function renderWeather(data) {
+    document.querySelector('.weather-text').innerText = data.description;
+    document.querySelector('.weather-temp').innerText = data.mainTemp;
+    document.querySelector('.min-temp').innerText = data.minTemp;
+    document.querySelector('.max-temp').innerText = data.maxTemp;
+    document.querySelector('.wind').innerText = data.wind;
+    document.querySelector('.location-name').innerText = gCurrPos.name
+}
+
 function renderLocationName(name) {
     document.querySelector('.info-section span').innerText = ' ' + name
-
+    showWeather()
 }
 
 function updateCurrLocation(lat, lng, name) {
@@ -169,6 +201,7 @@ function onListLocationClick(location) { // Pan to location on map after user cl
     updateCurrLocation(locLat, locLng, location.name)
     console.log(location);
     document.querySelector('.info-section span').innerText = ' ' + location.name
+    document.querySelector('.location-name').innerText = location.name
     panTo(locLat, locLng)
     addMarker({ lat: locLat, lng: locLng });
 }

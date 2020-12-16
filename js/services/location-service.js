@@ -49,7 +49,7 @@ function removeLoc(locId) {
 }
 
 function getLocIdxById(locId) {
-    const idx = gLocations.findIndex(function(location) {
+    const idx = gLocations.findIndex(function (location) {
         return location.id === locId;
     })
     return idx;
@@ -71,6 +71,6 @@ function getGeoPos(address) {
 }
 
 function getWeather(lat, lon) {
-    return axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=f55cd804eeed6f4a96f9f0f6d9d31b33`)
+    return axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=f55cd804eeed6f4a96f9f0f6d9d31b33&units=metric`)
         .then(res => res.data)
 }
