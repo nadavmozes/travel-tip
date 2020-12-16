@@ -4,6 +4,7 @@ import { locationService } from './services/location-service.js'
 console.log('locationService', locationService);
 
 var gGoogleMap;
+var gMarkers = [];
 
 window.onload = () => {
     renderLocations();
@@ -54,6 +55,9 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
         .then(map => { // Listen to a click and get the lat, lng
             return new Promise((resolve, reject) => {
                 map.addListener('click', ((e) => {
+                    const saveBtn = document.querySelector('.btn-save')
+                    saveBtn.classList.add('animate-btn')
+                    setTimeout(() => { saveBtn.classList.remove('animate-btn') }, 1000)
                     const lat = e.latLng.lat();
                     const lng = e.latLng.lng();
                     const pos = { lat, lng };
@@ -121,14 +125,25 @@ function onListLocationClick(location) { // Pan to location on map after user cl
 
 
 function addMarker(loc) {
+    clearMarkers() // Clear previous markers whenever a new marker is placed.
     var marker = new google.maps.Marker({
         position: loc,
         map: gGoogleMap,
         title: 'Hello World!'
     });
+    gMarkers.push(marker)
     return marker;
 }
 
+function setMapOnAll(map) { // Related to clearing markers
+    for (var i = 0; i < gMarkers.length; i++) {
+        gMarkers[i].setMap(map);
+    }
+}
+
+function clearMarkers() {
+    setMapOnAll(null);
+}
 
 
 function panTo(lat, lng) {

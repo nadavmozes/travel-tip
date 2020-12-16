@@ -131,7 +131,6 @@ i {
 .main-section .locations-list li p {
     flex-grow: 2;
     font-size: 22px;
-    cursor: pointer;
     
 }
 
@@ -189,4 +188,14 @@ input[name="search"] {
 
 .clear-list {
     list-style-type: none;
+}
+
+.animate-btn {
+    animation: jump 1s;
+}
+
+@keyframes jump {
+    0% {transform: scale(1.1,.9);}
+   50% {transform: scale(.9,1.1) translateY(-.3rem)}
+   70% {transform: scale(1);}
 }

@@ -36,7 +36,7 @@ function createLoc(lat, lng, name) {
 function removeLoc(locId) {
     const locIdx = getLocIdxById(locId);
     if (locIdx >= 0) {
-        if (confirm('are you sure?')) gLocations.splice(locIdx, 1);
+        if (confirm('Are you sure?')) gLocations.splice(locIdx, 1);
         saveInLocalStorage(KEY, gLocations);
     }
 }
