@@ -46,6 +46,8 @@ i {
 }
 
 .navbar .btn-go {
+    position: relative;
+    top: 1.3px;
     padding: 2.5px 15px;
     text-transform: uppercase;
 }
