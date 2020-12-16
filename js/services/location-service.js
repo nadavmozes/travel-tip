@@ -20,6 +20,7 @@ export const locationService = {
     removeLoc,
     createLocations,
     getGeoPos,
+    getWeather,
 }
 
 
@@ -48,7 +49,7 @@ function removeLoc(locId) {
 }
 
 function getLocIdxById(locId) {
-    const idx = gLocations.findIndex(function (location) {
+    const idx = gLocations.findIndex(function(location) {
         return location.id === locId;
     })
     return idx;
@@ -66,5 +67,10 @@ function createLocations() {
 
 function getGeoPos(address) {
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBl87TiQS8GLNue1FDNN3tM3GN9QkCw3lc`)
+        .then(res => res.data)
+}
+
+function getWeather(lat, lon) {
+    return axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=f55cd804eeed6f4a96f9f0f6d9d31b33`)
         .then(res => res.data)
 }
