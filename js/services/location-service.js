@@ -44,6 +44,7 @@ function getLocIdxById(locId) {
     const idx = gLocations.findIndex(function(location) {
         return location.id === locId;
     })
+    return idx;
 }
 // function goToLoc {
 
