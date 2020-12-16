@@ -1,6 +1,6 @@
 'use strict'
 const KEY = 'locDB'
-    // const gSavedLoc;
+const gSavedLoc;
 const gLocations = [{
     id: makeId(),
     name: 'Puki Home',
@@ -33,13 +33,18 @@ function createLoc(lat, lng, name) {
 }
 
 function removeLoc(locId) {
-    const locIdx = getMemeIdxById(locId);
+    const locIdx = getLocIdxById(locId);
     if (locIdx >= 0) {
         if (confirm('are you sure?')) gSavedLoc.splice(locIdx, 1);
         saveInLocalStorage(KEY, gSavedLoc);
     }
 }
 
+function findLocById(locId) {
+    const idx = gLocations.findIndex(function(location) {
+        return location.id === locId;
+    })
+}
 // function goToLoc {
 
 // }
