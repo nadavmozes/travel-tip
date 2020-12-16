@@ -75,12 +75,19 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
         })
         .then(pos => { // When user sends input
-            document.querySelector('.swal2-confirm').addEventListener('click', (() => {
-                console.log('User clicked save', pos)
-            }))
+            return new Promise((resolve, reject) => {
+                document.querySelector('.swal2-confirm').addEventListener('click', (() => {
+                    resolve(onUserInput(pos));
+                }))
+
+            })
         })
 
 
+}
+
+function onUserInput(pos) {
+    console.log('user saved:', pos)
 }
 
 function addMarker(loc) {

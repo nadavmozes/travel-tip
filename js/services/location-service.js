@@ -1,6 +1,6 @@
 'use strict'
 const KEY = 'locDB'
-const gSavedLoc;
+var gSavedLoc;
 const gLocations = [{
     id: makeId(),
     name: 'Puki Home',
