@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -7,21 +9,10 @@ html {
 }
 
 body {
-    margin: 0;
+
     background-color: lightcyan
 }
 
-
-/* healpers */
-
-.flex {
-    display: flex;
-}
-
-.flex-center {
-    align-items: center;
-    justify-content: center;
-}
 
 
 /* nav-bar */
@@ -82,4 +73,24 @@ body {
 
 input[name="search"] {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* healpers */
+
+.flex {
+    display: flex;
+}
+
+.flex-inline {
+    display: inline-flex;
+}
+
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-list {
+    list-style-type: none;
 }

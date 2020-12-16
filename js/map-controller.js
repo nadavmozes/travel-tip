@@ -69,26 +69,23 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
 
                 document.querySelector('.btn-save').addEventListener('click', (() => {
                     console.log(pos);
-                    onSaveLocation(); // Prompt user for a location name
-                    resolve(pos);
+                    console.log('Prompting user')
+                    onSaveLocation(pos); // Prompt user for a location name
                 }))
-            })
-        })
-        .then(pos => { // When user sends input
-            return new Promise((resolve, reject) => {
-                document.querySelector('.swal2-confirm').addEventListener('click', (() => {
-                    console.log('Testing');
-                    resolve(onUserInput(pos));
-                }))
-
             })
         })
 
 
 }
 
-function onUserInput(pos) {
-    console.log('user saved:', pos)
+function onUserInput(pos, name) {
+    locationService.createLoc(pos.lat, pos.lng, name); // Create the location using the service
+    console.log(locationService.gLocations)
+}
+
+
+function renderLocations() {
+
 }
 
 function addMarker(loc) {
@@ -127,8 +124,8 @@ function _connectGoogleApi() {
     })
 }
 
-function onSaveLocation() {
-    Swal.fire({
+function onSaveLocation(pos) {
+    return Swal.fire({
         title: 'Enter location\'s name',
         input: 'text',
         customClass: {
@@ -142,6 +139,13 @@ function onSaveLocation() {
             }
         }
     })
+        .then(isConfirm => {
+            if (isConfirm) {
+                const name = document.querySelector('.swal2-input').value
+                console.log('location name:', name);
+                onUserInput(pos, name);
+            }
+        })
 
 
 }
