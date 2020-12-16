@@ -65,7 +65,7 @@ function getUserPosition() {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyBO-cyL0lQfhN_4EeEYQE0fxkphxpUTals'; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyBO-cyL0lQfhN_4EeEYQE0fxkphxpUTals';
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
