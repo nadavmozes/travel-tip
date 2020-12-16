@@ -6,6 +6,7 @@ console.log('locationService', locationService);
 var gGoogleMap;
 
 window.onload = () => {
+    renderLocations();
     initMap()
         .then(() => {
             addMarker({ lat: 32.0749831, lng: 34.9120554 });
@@ -45,9 +46,9 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gGoogleMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                    center: { lat, lng },
-                    zoom: 15
-                })
+                center: { lat, lng },
+                zoom: 15
+            })
             return gGoogleMap
         })
         .then(map => { // Listen to a click and get the lat, lng
@@ -64,16 +65,16 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
         })
 
-    .then(pos => {
-        return new Promise((resolve, reject) => {
+        .then(pos => {
+            return new Promise((resolve, reject) => {
 
-            document.querySelector('.btn-save').addEventListener('click', (() => {
-                console.log(pos);
-                console.log('Prompting user')
-                onSaveLocation(pos); // Prompt user for a location name
-            }))
+                document.querySelector('.btn-save').addEventListener('click', (() => {
+                    console.log(pos);
+                    console.log('Prompting user')
+                    onSaveLocation(pos); // Prompt user for a location name
+                }))
+            })
         })
-    })
 
 
 }
@@ -84,7 +85,16 @@ function onUserInput(pos, name) {
 }
 
 function renderLocations() {
-    const locations = locationService.getLocations();
+    locationService.createLocations();
+    locationService.getLocations()
+        .then(locations => {
+            const strHTMLs = locations.map(location => {
+                return `
+    <li>${location.name}<i class="fas fa-map-marker-alt loc-${location.id}"></i><i class="far fa-trash-alt loc-${location.id}"></i></li>
+               `
+            })
+            document.querySelector('.locations-list').innerHTML = strHTMLs.join('');
+        })
 
 }
 
@@ -125,19 +135,19 @@ function _connectGoogleApi() {
 
 function onSaveLocation(pos) {
     return Swal.fire({
-            title: 'Enter location\'s name',
-            input: 'text',
-            customClass: {
-                validationMessage: 'A name is required.'
-            },
-            preConfirm: (value) => {
-                if (!value) {
-                    Swal.showValidationMessage(
-                        '<i class="fa fa-info-circle"></i> A name is required.'
-                    )
-                }
+        title: 'Enter location\'s name',
+        input: 'text',
+        customClass: {
+            validationMessage: 'A name is required.'
+        },
+        preConfirm: (value) => {
+            if (!value) {
+                Swal.showValidationMessage(
+                    '<i class="fa fa-info-circle"></i> A name is required.'
+                )
             }
-        })
+        }
+    })
         .then(isConfirm => {
             if (isConfirm) {
                 const name = document.querySelector('.swal2-input').value
