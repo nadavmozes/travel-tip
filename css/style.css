@@ -8,6 +8,7 @@ html {
 
 body {
     margin: 0;
+    background-color: lightsalmon;
 }
 
 
@@ -55,4 +56,12 @@ body {
 .main-section .location-info>div {
     height: 200px;
     border: 1px solid lightblue;
+}
+
+.main-section .location-info .weather {
+    background-color: whitesmoke;
+}
+
+.main-section .location-info .user-locations {
+    background-color: lightblue;
 }
