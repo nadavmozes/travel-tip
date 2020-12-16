@@ -91,7 +91,9 @@ function onSearchInput() {
         const elInput = document.querySelector('input[name="search"]')
         const userSearchTerm = elInput.value;
         elInput.value = '';
-        const prmPos = locationService.getGeoPos('address');
+        const prmPos = locationService.getGeoPos(userSearchTerm)
+            .then(data => data.results[0].geometry.location)
+            .then(location => panTo(location.lat, location.lng))
 
 
 
