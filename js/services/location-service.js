@@ -9,10 +9,10 @@ var gLocations = [{
     updatedAt: '65465465465',
 }];
 
-var gCurrPos = [{
-    lat: userLat,
-    lng: userLng,
-}]
+var gCurrPos = {
+    lat: 32.0852999,
+    lng: 34.78176759999999
+}
 
 export const locationService = {
     getLocations,
@@ -48,7 +48,7 @@ function removeLoc(locId) {
 }
 
 function getLocIdxById(locId) {
-    const idx = gLocations.findIndex(function(location) {
+    const idx = gLocations.findIndex(function (location) {
         return location.id === locId;
     })
     return idx;
