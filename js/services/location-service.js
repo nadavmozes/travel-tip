@@ -13,7 +13,7 @@ export const locationService = {
     getLocations,
     createLoc,
     removeLoc,
-    getLocationForDisplay
+    createLocations,
 }
 
 
@@ -42,7 +42,7 @@ function removeLoc(locId) {
 }
 
 function getLocIdxById(locId) {
-    const idx = gLocations.findIndex(function (location) {
+    const idx = gLocations.findIndex(function(location) {
         return location.id === locId;
     })
     return idx;
