@@ -1,6 +1,6 @@
 'use strict'
 const KEY = 'locDB'
-const gSavedLoc;
+    // const gSavedLoc;
 const gLocations = [{
     id: makeId(),
     name: 'Puki Home',
@@ -26,7 +26,7 @@ function createLoc(lat, lng, name) {
         lat,
         lng,
         name,
-        createdAt: Date.now,
+        createdAt: Date.now(),
     }
     gLocations.push(loc);
     saveInLocalStorage(KEY, gLocations)
