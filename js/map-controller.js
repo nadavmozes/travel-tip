@@ -6,7 +6,6 @@ console.log('locationService', locationService);
 var gGoogleMap;
 
 window.onload = () => {
-    renderLocations()
     initMap()
         .then(() => {
             addMarker({ lat: 32.0749831, lng: 34.9120554 });
@@ -81,22 +80,11 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
 
 function onUserInput(pos, name) {
     locationService.createLoc(pos.lat, pos.lng, name); // Create the location using the service
+    console.log(locationService.gLocations)
 }
 
-
-
 function renderLocations() {
-    locationService.createLocations();
-    locationService.getLocations()
-        .then(locations => {
-            const strHTMLs = locations.map(location => {
-                return `
-    <li>${location.name}<i class="fas fa-map-marker-alt loc-${location.id}"></i><i class="far fa-trash-alt loc-${location.id}"></i></li>
-
-               `
-            })
-            document.querySelector('.locations-list').innerHTML = strHTMLs.join('');
-        })
+    const locations = locationService.getLocations();
 
 }
 
@@ -123,7 +111,7 @@ function getUserPosition() {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyBl87TiQS8GLNue1FDNN3tM3GN9QkCw3lc';
+    const API_KEY = 'AIzaSyBO-cyL0lQfhN_4EeEYQE0fxkphxpUTals';
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
