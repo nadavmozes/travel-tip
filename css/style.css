@@ -194,6 +194,11 @@ i {
     background-color: #757575;
     border: none;
     cursor: pointer;
+    transition: all .2s;
+}
+
+.btn:hover {
+    background-color:#6475df;
 }
 
 input[name="search"] {
