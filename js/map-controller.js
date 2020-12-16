@@ -10,15 +10,26 @@ window.onload = () => {
         .then(() => {
             addMarker({ lat: 32.0749831, lng: 34.9120554 });
         })
-        .catch(console.log('INIT MAP ERROR'));
+        .catch(console.log('INIT MAP ERROR')); // If map didn't load for some reason
+    document.querySelector('.btn-curr-loc').addEventListener('click', () => {
+        getUserPosition()
+            .then(pos => {
+                console.log('User position is:', pos.coords);
+                const userLat = pos.coords.latitude;
+                const userLng = pos.coords.longitude
+                panTo(userLat, userLng); // If user gave permission, move map view to his location and add a marker.
+                addMarker({ lat: userLat, lng: userLng });
+                return gGoogleMap;
+            })
+            .catch(err => {
+                console.log('err!!!', err);
 
-    getUserPosition()
-        .then(pos => {
-            console.log('User position is:', pos.coords);
-        })
-        .catch(err => {
-            console.log('err!!!', err);
-        })
+            })
+    })
+
+
+
+
 
     document.querySelector('.btn').addEventListener('click', (ev) => {
         console.log('Aha!', ev.target);
@@ -34,10 +45,16 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gGoogleMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                    center: { lat, lng },
-                    zoom: 15
-                })
-            console.log('Map!', gGoogleMap);
+                center: { lat, lng },
+                zoom: 15
+            })
+            return gGoogleMap
+        })
+        .then(map => {
+            map.addListener('click', ((e) => {
+                console.log('lat', e.latLng.lat());
+                console.log('lat', e.latLng.lng());
+            }))
         })
 }
 
