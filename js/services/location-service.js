@@ -40,7 +40,7 @@ function removeLoc(locId) {
     }
 }
 
-function findLocById(locId) {
+function getLocIdxById(locId) {
     const idx = gLocations.findIndex(function(location) {
         return location.id === locId;
     })
