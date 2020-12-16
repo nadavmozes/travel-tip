@@ -12,7 +12,8 @@ const gLocations = [{
 export const locationService = {
     getLocations,
     createLoc,
-    removeLoc
+    removeLoc,
+    getLocationForDisplay
 }
 
 
@@ -46,6 +47,7 @@ function getLocIdxById(locId) {
     })
     return idx;
 }
-// function goToLoc {
 
-// }
+function getLocationForDisplay() {
+    return gLocations;
+}

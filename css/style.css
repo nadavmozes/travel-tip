@@ -34,6 +34,7 @@ body {
 
 .nav-heading {
     flex-grow: 2;
+    margin-left: 15px;
 }
 
 
