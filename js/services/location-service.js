@@ -13,11 +13,7 @@ export const locationService = {
     getLocations,
     createLoc,
     removeLoc,
-<<<<<<< HEAD
-    getLocationForDisplay
-=======
-    gLocations
->>>>>>> a32ea0fcb965169ec7cf46e1920b53d9840a405f
+    createLocations,
 }
 
 
@@ -46,12 +42,18 @@ function removeLoc(locId) {
 }
 
 function getLocIdxById(locId) {
-    const idx = gLocations.findIndex(function (location) {
+    const idx = gLocations.findIndex(function(location) {
         return location.id === locId;
     })
     return idx;
 }
 
-function getLocationForDisplay() {
-    return gLocations;
+function createLocations() {
+    const locations = getFromLocalStorage(KEY)
+    if (!locations || !locations.length) {
+        gLocations = [];
+        saveInLocalStorage(KEY, gLocations);
+        return;
+    }
+    gLocations = locations;
 }
