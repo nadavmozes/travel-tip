@@ -5,6 +5,11 @@ console.log('locationService', locationService);
 
 var gGoogleMap;
 var gMarkers = [];
+var gCurrPos = {
+    lat: 32.0852999,
+    lng: 34.78176759999999,
+    name: 'Tel Aviv'
+}
 
 window.onload = () => {
     renderLocations();
@@ -22,6 +27,8 @@ window.onload = () => {
                 const userLng = pos.coords.longitude
                 panTo(userLat, userLng); // If user gave permission, move map view to his location and add a marker.
                 addMarker({ lat: userLat, lng: userLng });
+                updateCurrLocation(userLat, userLng, 'My Home');
+                renderLocationName('My Home')
                 return gGoogleMap;
             })
             .catch(err => {
@@ -38,6 +45,18 @@ window.onload = () => {
         console.log('Aha!', ev.target);
         panTo(35.6895, 139.6917);
     })
+}
+
+function renderLocationName(name) {
+    document.querySelector('.info-section span').innerText = ' ' + name
+
+}
+
+function updateCurrLocation(lat, lng, name) {
+    gCurrPos.lat = lat;
+    gCurrPos.lng = lng;
+    gCurrPos.name = name;
+    console.log(gCurrPos)
 }
 
 
@@ -62,6 +81,8 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                     const lat = e.latLng.lat();
                     const lng = e.latLng.lng();
                     const pos = { lat, lng };
+                    updateCurrLocation(lat, lng, 'Earth');
+                    renderLocationName(gCurrPos.name)
                     addMarker({ lat: pos.lat, lng: pos.lng });
                     console.log(pos);
                     console.log('lat', e.latLng.lat());
@@ -92,9 +113,18 @@ function onSearchInput() {
         const elInput = document.querySelector('input[name="search"]')
         const userSearchTerm = elInput.value;
         elInput.value = '';
-        const prmPos = locationService.getGeoPos(userSearchTerm)
+        locationService.getGeoPos(userSearchTerm)
+            .then(data => {
+                console.log(data)
+                gCurrPos.name = data.results[0].address_components[0].long_name
+                return data
+            })
             .then(data => data.results[0].geometry.location)
-            .then(location => panTo(location.lat, location.lng))
+            .then(location => {
+                panTo(location.lat, location.lng)
+                updateCurrLocation(location.lat, location.lng, gCurrPos.name)
+                renderLocationName(gCurrPos.name)
+            })
 
 
 
@@ -136,6 +166,7 @@ function renderLocations() {
 function onListLocationClick(location) { // Pan to location on map after user click
     const locLat = location.lat;
     const locLng = location.lng;
+    updateCurrLocation(locLat, locLng, location.name)
     console.log(location);
     document.querySelector('.info-section span').innerText = ' ' + location.name
     panTo(locLat, locLng)
