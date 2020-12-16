@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* healpers */
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* nav-bar */
+
+.nav-heading {
+    flex-grow: 2;
+}
+
+
+/* location info */
+
+.info-section p {
+    flex-grow: 2;
+}
+
+
+/* main section */
+
+.main-section {
+    height: 100%;
+}
+
+.main-section>div {
+    flex-basis: 50%;
+}
+
+.main-section .location-info {
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-section .location-info>div {
+    height: 200px;
+    border: 1px solid lightblue;
+}

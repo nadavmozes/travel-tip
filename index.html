@@ -4,15 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./imgs/favicon.ico" type="image/x-icon" sizes="16x16">
     <title>Travel-Tip</title>
 </head>
 
 <body>
-    <h1>ES6</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button class="btn">Click Me</button>
+    <nav class="nav-bar flex">
+        <h1 class="nav-heading">TravelTip</h1>
+        <input type="text" name="search" placeholder="Enter Location">
+        <button class="btn btn-go">Go</button>
+        <button class="btn btn-curr-loc">My Location</button>
+    </nav>
+    <section class="info-section flex">
+        <p>Location:<span></span></p>
+        <button class="btn btn-copy-loc">Copy Location</button>
+    </section>
+    <section class="main-section flex">
+        <div class="location-info flex">
+            <div class="weather">Weather Today</div>
+            <div class="user-locations">Locations Table</div>
+        </div>
 
-    <script type="module" src="js/map-controller.js"></script>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+        <!-- <button class="btn">Click Me</button> -->
+
+    </section>
+    <script src="./lib/axios.js"></script>
+    <script type="module" src="./js/map-controller.js"></script>
 </body>
 
 </html>
