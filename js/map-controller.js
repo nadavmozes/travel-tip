@@ -62,6 +62,7 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                     const lat = e.latLng.lat();
                     const lng = e.latLng.lng();
                     const pos = { lat, lng };
+                    addMarker({ lat: pos.lat, lng: pos.lng });
                     console.log(pos);
                     console.log('lat', e.latLng.lat());
                     console.log('lat', e.latLng.lng());
