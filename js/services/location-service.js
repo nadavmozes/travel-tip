@@ -10,8 +10,8 @@ var gLocations = [{
 }];
 
 var gCurrPos = [{
-    lat: userLat,
-    lng: userLng,
+    lat: 32,
+    lng: 34,
 }]
 
 export const locationService = {
