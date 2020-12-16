@@ -24,7 +24,8 @@ function createLoc(lat, lng, name) {
         id: makeId(),
         lat,
         lng,
-        name
+        name,
+        createdAt: Date.now,
     }
     return loc;
 }
