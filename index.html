@@ -11,22 +11,25 @@
 </head>
 
 <body>
-    <nav class="nav-bar flex">
-        <h1 class="nav-heading">TravelTip</h1>
-        <input type="text" name="search" placeholder="Enter Location">
-        <button class="btn btn-go">Go</button>
-        <button class="btn btn-curr-loc">My Location</button>
+    <nav class="navbar ">
+        <div class="nav-container main-layout flex">
+            <h1 class="nav-heading">TravelTip</h1>
+            <input type="text" name="search" placeholder="Enter Location">
+            <button class="btn btn-go">Go</button>
+            <button class="btn btn-curr-loc">My Location</button>
+
+        </div>
     </nav>
-    <section class="info-section flex">
+    <section class="info-section main-layout flex">
         <p>Location:<span></span></p>
         <button class="btn btn-save">Save Location</button>
         <button class="btn btn-copy-loc">Copy Location</button>
     </section>
-    <section class="main-section flex">
+    <section class="main-section main-layout flex">
         <div class="location-info flex">
             <div class="weather">Weather Today</div>
             <div class="user-locations">
-                <ul class="locations-list clear-list">
+                <ul class="locations-list flex flex-column clear-list">
 
                 </ul>
             </div>

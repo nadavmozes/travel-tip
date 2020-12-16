@@ -9,30 +9,78 @@ html {
 }
 
 body {
-
-    background-color: lightcyan
+    background-color:  #eee
 }
 
+i {
+    transition: color .2s;
+    cursor: pointer;
+}
+
+
+/* LAYOUT */
+.main-layout {
+    max-width: 85vw;
+    margin: 0 auto;
+}
 
 
 /* nav-bar */
 
-.nav-bar {
-    background-color: #16b9b9;
-    box-shadow: 5px 2px 5px #000000;
+.navbar {
+    background-color:#303F9F;
+
+}
+
+.nav-container {
     margin-bottom: 20px;
+    align-items: center;
+}
+
+.navbar input {
+    padding: 5px;
+}
+
+.navbar button {
+    font-size: 18px;
+}
+
+.navbar .btn-go {
+    padding: 2.5px 15px;
+    text-transform: uppercase;
+}
+
+.navbar .btn-curr-loc {
+    padding: 2.5px 5px;
+    margin-left: 5px;
 }
 
 .nav-heading {
+    color: #eee;
+    font-size: 45px;
+    padding: 10px 0;
     flex-grow: 2;
-    margin-left: 15px;
 }
 
 
 /* location info */
 
+.info-section {
+    margin-bottom: 2.5rem;
+}
+
 .info-section p {
     flex-grow: 2;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.info-section button {
+    padding: 5px 10px;
+}
+
+.info-section .btn-copy-loc {
+    margin-left: 10px;
 }
 
 
@@ -53,7 +101,6 @@ body {
 
 .main-section .location-info>div {
     height: 200px;
-    border: 1px solid lightblue;
 }
 
 .main-section .location-info .weather {
@@ -61,7 +108,47 @@ body {
 }
 
 .main-section .location-info .user-locations {
-    background-color: lightblue;
+    background-color: #C5CAE9;
+}
+
+.main-section #map {
+    flex-basis: 70%;
+}
+
+.main-section .locations-list li {
+    margin-left: 3px;
+}
+
+.main-section .locations-list li:first-child {
+    margin-top: 8px;
+}
+
+.main-section .locations-list li:not(:last-child){
+    margin-bottom: 5px;
+}
+
+.main-section .locations-list li p {
+    flex-grow: 2;
+    font-size: 22px;
+    cursor: pointer;
+    
+}
+
+.main-section .locations-list i {
+    font-size: 24px;
+}
+
+.main-section .locations-list .go-to-btn:hover {
+    color: rgb(20, 194, 20);
+}
+
+.main-section .locations-list .delete-location-btn {
+    margin-left: 8px;
+    margin-right: 5px;
+}
+
+.main-section .locations-list .delete-location-btn:hover {
+    color: red;
 }
 
 
@@ -69,6 +156,10 @@ body {
 
 .btn {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FFFFFF;
+    background-color:#757575;
+    border: none;
+    cursor: pointer;
 }
 
 input[name="search"] {
@@ -76,10 +167,14 @@ input[name="search"] {
 }
 
 
-/* healpers */
+/* helpers */
 
 .flex {
     display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
 }
 
 .flex-inline {

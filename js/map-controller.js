@@ -90,10 +90,11 @@ function renderLocations() {
         .then(locations => {
             const strHTMLs = locations.map(location => {
                 return `
-    <li>${location.name}<i class="fas fa-map-marker-alt loc-${location.id}"></i><i class="far fa-trash-alt loc-${location.id}"></i></li>
+    <li class="flex"><p>${location.name}</p><i class="fas fa-map-marker-alt go-to-btn loc-${location.id}"></i><i class="far fa-trash-alt delete-location-btn loc-${location.id}"></i></li>
                `
             })
             document.querySelector('.locations-list').innerHTML = strHTMLs.join('');
+            return locations;
         })
 
 }
