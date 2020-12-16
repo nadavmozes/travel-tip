@@ -58,7 +58,17 @@ function getLocIdxById(locId) {
 function createLocations() {
     const locations = getFromLocalStorage(KEY)
     if (!locations || !locations.length) {
-        gLocations = [];
+        gLocations = [
+            {
+                id: makeId(),
+                name: 'Tel Aviv-Yafo',
+                lat: 32.0852999,
+                lng: 34.78176759999999,
+                weather: '30C',
+                createdAt: '32165465465',
+                updatedAt: '65465465465',
+            }
+        ];
         saveInLocalStorage(KEY, gLocations);
         return;
     }

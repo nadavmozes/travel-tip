@@ -8,12 +8,14 @@ var gMarkers = [];
 var gCurrPos = {
     lat: 32.0852999,
     lng: 34.78176759999999,
-    name: 'Tel Aviv'
+    name: 'Tel Aviv-Yafo'
 }
 
 window.onload = () => {
     renderLocations();
     onSearchInput()
+    showWeather()
+
     initMap()
         .then(() => {
             addMarker({ lat: 32.0749831, lng: 34.9120554 });
@@ -54,12 +56,11 @@ function showWeather() {
         .then(data => {
             return new Promise((resolve, reject) => {
                 const weatherData = {
-                    img: data.weather[0].icon,
                     description: data.weather[0].description,
                     mainTemp: data.main.temp,
                     minTemp: data.main.temp_min,
                     maxTemp: data.main.temp_max,
-                    wind: data.wind.speed
+                    wind: data.wind.speed,
                 }
                 resolve(weatherData)
 
@@ -68,15 +69,16 @@ function showWeather() {
         .then(data => renderWeather(data))
 
 
+
 }
 
 function renderWeather(data) {
-    document.querySelector('.weather-text').innerText = data.description;
-    document.querySelector('.weather-temp').innerText = data.mainTemp;
-    document.querySelector('.min-temp').innerText = data.minTemp;
-    document.querySelector('.max-temp').innerText = data.maxTemp;
-    document.querySelector('.wind').innerText = data.wind;
     document.querySelector('.location-name').innerText = gCurrPos.name
+    document.querySelector('.weather-text').innerText = data.description;
+    document.querySelector('.weather-temp').innerText = Math.floor(data.mainTemp);
+    document.querySelector('.min-temp').innerText = Math.floor(data.minTemp);
+    document.querySelector('.max-temp').innerText = Math.floor(data.maxTemp) + ' °C,';
+    document.querySelector('.wind').innerText = ' wind: ' + data.wind + 'm/s.';
 }
 
 function renderLocationName(name) {
