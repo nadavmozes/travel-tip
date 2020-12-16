@@ -90,14 +90,35 @@ function renderLocations() {
         .then(locations => {
             const strHTMLs = locations.map(location => {
                 return `
-    <li class="flex"><p>${location.name}</p><i class="fas fa-map-marker-alt go-to-btn loc-${location.id}"></i><i class="far fa-trash-alt delete-location-btn loc-${location.id}"></i></li>
+    <li class="flex"><p>${location.name}</p><i class="fas fa-map-marker-alt go-to-btn go-loc-${location.id}"></i><i class="far fa-trash-alt delete-location-btn del-loc-${location.id}"></i></li>
                `
             })
             document.querySelector('.locations-list').innerHTML = strHTMLs.join('');
             return locations;
         })
+        .then(locations => {
+            locations.forEach(location => {
+                document.querySelector(`.go-loc-${location.id}`).addEventListener('click', ((e) => {
+                    onListLocationClick(location)
+                }))
+                document.querySelector(`.del-loc-${location.id}`).addEventListener('click', (e) => {
+                    console.log(location.id)
+                    locationService.removeLoc(location.id)
+                    renderLocations()
+                })
+            })
+        })
 
 }
+
+function onListLocationClick(location) { // Pan to location on map after user click
+    const locLat = location.lat;
+    const locLng = location.lng;
+    console.log(location);
+    panTo(locLat, locLng)
+    addMarker({ lat: locLat, lng: locLng });
+}
+
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({
@@ -107,6 +128,8 @@ function addMarker(loc) {
     });
     return marker;
 }
+
+
 
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
@@ -154,6 +177,7 @@ function onSaveLocation(pos) {
                 const name = document.querySelector('.swal2-input').value
                 console.log('location name:', name);
                 onUserInput(pos, name);
+                renderLocations()
             }
         })
 
