@@ -26,7 +26,7 @@ function createLoc(lat, lng, name) {
         lat,
         lng,
         name,
-        createdAt: Date.now,
+        createdAt: Date.now(),
     }
     gLocations.push(loc);
     saveInLocalStorage(KEY, gLocations)
