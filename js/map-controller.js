@@ -91,6 +91,12 @@ function onUserInput(pos) {
     console.log('user saved:', pos)
 }
 
+
+function renderLocations() {
+
+
+}
+
 function addMarker(loc) {
     var marker = new google.maps.Marker({
         position: loc,
