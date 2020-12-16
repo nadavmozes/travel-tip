@@ -137,6 +137,7 @@ function onListLocationClick(location) { // Pan to location on map after user cl
     const locLat = location.lat;
     const locLng = location.lng;
     console.log(location);
+    document.querySelector('.info-section span').innerText = ' ' + location.name
     panTo(locLat, locLng)
     addMarker({ lat: locLat, lng: locLng });
 }
@@ -211,6 +212,7 @@ function onSaveLocation(pos) {
             if (isConfirm) {
                 const name = document.querySelector('.swal2-input').value
                 console.log('location name:', name);
+                if (!name) return;
                 onUserInput(pos, name);
                 renderLocations()
             }
